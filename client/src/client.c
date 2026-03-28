@@ -52,18 +52,18 @@ int main(void)
 
 	// Creamos una conexión hacia el servidor
 	conexion = crear_conexion(ip, puerto);
+	if(conexion!=-1){
+		// Enviamos al servidor el valor de CLAVE como mensaje
+		enviar_mensaje(valor,conexion);
 
-	// Enviamos al servidor el valor de CLAVE como mensaje
-	enviar_mensaje(valor,conexion);
-	/*size_t bytes;
-	int32_t handshake=1;
-	int32_t result;
-	bytes=send(conexion,&handshake,sizeof(int32_t),0);
-	bytes=recv(conexion,&result,sizeof(int32_t),MSG_WAITALL);*/
-
-	// Armamos y enviamos el paquete
-	//leer_consola(logger); lo sacamos para que funcione los mensajes que le envio cliente al servidor
-	paquete(conexion);
+		// Armamos y enviamos el paquete
+		//leer_consola(logger); lo sacamos para que funcione los mensajes que le envio cliente al servidor
+		log_info(logger,"Mensaje enviado con exito");
+		paquete(conexion);
+	}else{
+		log_error(logger,"NO hay conexion, no se pudo enviar el mensaje");
+	}
+	
 
 	terminar_programa(conexion, logger, config);
 
@@ -112,9 +112,9 @@ void paquete(int conexion)
 	t_paquete* paquete;
 
 	// Leemos y esta vez agregamos las lineas al paquete
-	paquete=crear_paquete();
+	paquete=crear_paquete(); //para que acumule info
 	leido=readline(">+ ");
-	while(leido && strcmp(leido,"")!=0){
+	while(leido && strcmp(leido,"")!=0){ //ya que no sabe la funcion cuanto contenido ira
 		agregar_a_paquete(paquete,leido,strlen(leido)+1);
 		free(leido);
 		leido=readline(">+ ");
