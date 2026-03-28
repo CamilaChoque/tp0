@@ -1,6 +1,6 @@
 #include "utils.h"
 
-t_log* logger; //no es buena practica el logger pero habria que averiguar - aunque los profes lo colocaron en utils.c del server
+//t_log* logger; //no es buena practica el logger pero habria que averiguar - aunque los profes lo colocaron en utils.c del server
 void* serializar_paquete(t_paquete* paquete, int bytes)
 {
 	void * magic = malloc(bytes); //BYTES ES EL SIZE EXACTO QUE uqiero reservar
@@ -106,7 +106,7 @@ void enviar_paquete(t_paquete* paquete, int socket_cliente)
 	void* a_enviar = serializar_paquete(paquete, bytes);
 
 	send(socket_cliente, a_enviar, bytes, 0);
-	log_info(logger,"Mensaje enviado con exito");
+	//log_info(logger,"Mensaje enviado con exito");
 	
 
 	free(a_enviar);
