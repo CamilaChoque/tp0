@@ -99,7 +99,7 @@ void leer_consola(t_log* logger)
 		free(leido);
 		
 		leido = readline(">+ ");
-		log_info(logger,"Mensaje enviado con exito");
+		
 	}
 	// ¡No te olvides de liberar las lineas antes de regresar!
 	free(leido);
@@ -122,6 +122,7 @@ void paquete(int conexion)
 	}
 	free(leido);
 	enviar_paquete(paquete,conexion);
+	log_info(logger,"Mensaje enviado con exito");
 	// ¡No te olvides de liberar las líneas y el paquete antes de regresar!
 	eliminar_paquete(paquete);
 	
