@@ -122,7 +122,7 @@ void paquete(int conexion)
 	}
 	free(leido);
 	enviar_paquete(paquete,conexion);
-	log_info(logger,"Mensaje enviado con exito");
+	
 	// ¡No te olvides de liberar las líneas y el paquete antes de regresar!
 	eliminar_paquete(paquete);
 	
