@@ -58,7 +58,7 @@ int main(void)
 
 		// Armamos y enviamos el paquete
 		//leer_consola(logger); lo sacamos para que funcione los mensajes que le envio cliente al servidor
-		log_info(logger,"Mensaje enviado con exito");
+		log_info(logger,"Valores enviado con exito");
 		paquete(conexion);
 	}else{
 		log_error(logger,"NO hay conexion, no se pudo enviar el mensaje");
@@ -99,6 +99,7 @@ void leer_consola(t_log* logger)
 		free(leido);
 		
 		leido = readline(">+ ");
+		log_info(logger,"Mensaje enviado con exito");
 	}
 	// ¡No te olvides de liberar las lineas antes de regresar!
 	free(leido);
