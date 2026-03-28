@@ -105,13 +105,9 @@ void enviar_paquete(t_paquete* paquete, int socket_cliente)
 	int bytes = paquete->buffer->size + 2*sizeof(int);
 	void* a_enviar = serializar_paquete(paquete, bytes);
 
+	send(socket_cliente, a_enviar, bytes, 0)
+	log_info(logger,"Mensaje enviado con exito");
 	
-	
-	if(send(socket_cliente, a_enviar, bytes, 0)!=-1){
-		log_info(logger,"Mensaje enviado con exito");
-	}else{
-		log_error(logger,"Mensaje no fue enviado");
-	}
 
 	free(a_enviar);
 }
